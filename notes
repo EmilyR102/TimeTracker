@@ -1,0 +1,19 @@
+index.html - you mount your App component here
+
+public contains index.html and static assets such as images
+
+models - MongoDB stuff
+
+utils - typically common functions that do formatting, handle apis, data validation, user authentication, or have helper functions or modules that aren't specific to a particular component or feature such as string operations and data manipulation
+
+
+backend - includes Python Flask with MongoDB 
+
+public/index.html
+
+src/index.js
+
+src/App.js
+
+
+In order to initialize the file hierarchy run the create react app command
