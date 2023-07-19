@@ -1,0 +1,34 @@
+.Login {
+  text-align:center
+}
+
+.Login-header {
+  background-color: cadetblue;
+  min-height: 100vh; /*takes up 100% of the viewport height */
+  min-width: 100vw;
+  display:flex;
+  flex-direction:column; /*sets the main axis of the flex container to be vertical */
+  align-items:center; /*aligns children horizontally but verticall in this case at the center of the flex container */
+  justify-content: center; /*aligns child elements along the vertical axis but in this case horizontally at the center of the flex container */
+
+}
+
+h1 {
+  color:white;
+  font-size: calc(10px + 10vmin)
+}
+
+label {
+  margin-right: 10px;
+}
+
+#entry {
+  display: inline-block
+}
+
+#signup {
+  margin-top: 10px
+}
+
+
+
