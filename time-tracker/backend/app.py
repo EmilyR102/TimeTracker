@@ -1,5 +1,8 @@
+from flask import Flask, session, render_template, request, redirect
 
 import pyrebase
+
+app = Flask(__name__)
 
 firebaseConfig = {
   'apiKey': "AIzaSyCWHeXSR1nre9xnmj-qrSg6B_FASivgWF4",
@@ -15,16 +18,17 @@ firebaseConfig = {
 firebase = pyrebase.initialize_app(firebaseConfig)
 auth = firebase.auth()
 
-email = 'test@gmail.com'
-password = '123456'
+app.secret_key = 'secret'
 
-user = auth.sign_in_with_email_and_password(email, password)
+# @app.route("")
+
+# user = auth.sign_in_with_email_and_password(email, password)
 
 # info = auth.get_account_info(user['idToken'])
 # print(info)
 
 # auth.send_email_verification(user['idToken'])
-auth.send_password_reset_email(email)
+# auth.send_password_reset_email(email)
 
 # user = auth.create_user_with_email_and_password(email,password)
 # print(user)
