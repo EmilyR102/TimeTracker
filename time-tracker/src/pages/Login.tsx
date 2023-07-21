@@ -1,4 +1,5 @@
 import Title from "../components/Title";
+import InputUserPass from "../components/InputUserPass";
 
 export default function Login() {
   return (
@@ -6,6 +7,7 @@ export default function Login() {
       <div className="mt-10">
         <Title />
       </div>
+      <InputUserPass />
     </div>
   );
 }
