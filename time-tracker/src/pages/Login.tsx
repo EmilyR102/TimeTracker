@@ -1,10 +1,11 @@
 import Title from "../components/Title";
-import InputUserPass from "../components/InputUserPass";
+import InputUserPass from "../components/InputLogin";
+import '../App.css'
 
 export default function Login() {
   return (
-    <div>
-      <div className="mt-10">
+    <div className="Login">
+      <div className="app_title">
         <Title />
       </div>
       <InputUserPass />
