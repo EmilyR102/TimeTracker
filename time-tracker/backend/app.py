@@ -1,5 +1,4 @@
-from flask import Flask, session, render_template, request, redirect
-
+from flask import Flask, session, render_template, request, redirect, jsonify
 import pyrebase
 
 app = Flask(__name__)
@@ -20,7 +19,39 @@ auth = firebase.auth()
 
 app.secret_key = 'secret'
 
-# @app.route("")
+
+
+@app.route("/login")
+def login():
+    return {"users":["User1", "User2", "User3"]}
+    # if 'user' in session:
+    #     return f"Welcome {session['user']}"
+    
+    # if request.method == 'POST':
+    #     email = request.form['email']
+    #     password = request.form['password']
+    #     print(email)
+    #     print(password)
+
+    #     try:
+    #         user = auth.sign_in_with_email_and_password(email, password)
+    #         session['user'] = email
+    #         #a block of information that you can store anything in.
+    #         return jsonify({"success":True, "message":"Success!"})
+
+    #     except Exception:
+    #         return jsonify({"success":False, "message":"Failed to login"})
+
+@app.route("/signup", methods=['POST'])
+def signup():
+    ...
+
+if __name__ == "__main__":
+    app.run(debug=True) #since we're in dev mode
+    
+
+
+# In this code snippet, we used the @app.route('/') decorator to associate the index() function with the root URL '/'. When a user visits http://localhost:5000/ (assuming your Flask app is running on port 5000), Flask will automatically call the index() function, and the response 'Hello, world!' will be sent back to the client as the HTTP response.
 
 # user = auth.sign_in_with_email_and_password(email, password)
 

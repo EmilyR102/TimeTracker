@@ -10,12 +10,13 @@ export default function InputUserPass() {
   
   return (
     <div className="InputLogin">
-      <form>
+      <form action="/login" method="POST" >
         <div>
           <label htmlFor="email">Email: </label>
           <input
             className="login_info"
             id="email"
+            name="email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -27,6 +28,7 @@ export default function InputUserPass() {
           <input
             className="login_info"
             id="password"
+            name="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
