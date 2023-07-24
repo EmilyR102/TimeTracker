@@ -8,7 +8,7 @@ export default function InputUserPass() {
   useEffect(() => console.log({ email }), [email]);
 
   const handleButtonClick = async () => {
-    const response = fetch("http://localhost:5000/login", {
+    const response = fetch("http://localhost:5000/signup", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({

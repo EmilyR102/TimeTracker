@@ -42,7 +42,7 @@ def login():
 @app.route("/signup", methods=['POST'])
 def signup():
     print("You want to signup :)")
-    return ["Signup Button Clicked"]
+    return ["Signup Button", "Clicked"]
     # email = request.form['email']
     # password = request.form['password']
 
