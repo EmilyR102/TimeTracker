@@ -19,32 +19,38 @@ auth = firebase.auth()
 
 app.secret_key = 'secret'
 
-
-
-@app.route("/login")
+@app.route("/login", methods=['POST'])
 def login():
-    return {"users":["User1", "User2", "User3"]}
-    # if 'user' in session:
-    #     return f"Welcome {session['user']}"
-    
-    # if request.method == 'POST':
-    #     email = request.form['email']
-    #     password = request.form['password']
-    #     print(email)
-    #     print(password)
+    email = request.form['email']
+    if 'user' in session:
+        print(f'Welcome {email}')
 
-    #     try:
-    #         user = auth.sign_in_with_email_and_password(email, password)
-    #         session['user'] = email
-    #         #a block of information that you can store anything in.
-    #         return jsonify({"success":True, "message":"Success!"})
+    else:
+        password = request.form['password']
 
-    #     except Exception:
-    #         return jsonify({"success":False, "message":"Failed to login"})
+        try:
+            user = auth.sign_in_with_email_and_password(email,password)
+            session['user'] = email
+            print("You're logging in!")
+            return ["User1", "User2", "User3"]
+
+        except Exception:
+            print('Wrong login')
+            return []
+
 
 @app.route("/signup", methods=['POST'])
 def signup():
-    ...
+    print("You want to signup :)")
+    return ["Signup Button Clicked"]
+    # email = request.form['email']
+    # password = request.form['password']
+
+    # try:
+    #     user = auth.create_user_with_email_and_password(email,password)
+    # except Exception:
+    #     print("Invalid email or password. Try again!")
+    #     #how do I redirect back to the home page??
 
 if __name__ == "__main__":
     app.run(debug=True) #since we're in dev mode
