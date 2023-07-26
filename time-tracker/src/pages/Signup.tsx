@@ -1,14 +1,14 @@
 import Title from "../components/Title";
 import InputUserPass from "../components/InputUserPass";
-import '../App.css'
+import "../App.css";
 
-export default function Login() {
+export default function Signup() {
   return (
-    <div className="Login">
+    <div className="Signup">
       <div className="app_title">
         <Title />
       </div>
-      <InputUserPass authentication={"login"} />
+      <InputUserPass authentication={"signup"} />
     </div>
   );
 }

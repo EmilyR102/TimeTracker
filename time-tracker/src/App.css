@@ -17,16 +17,16 @@ margin-top: 10vmin;
 margin-bottom: 10vmin;
 }
 
-.InputLogin {
+.InputUserPass {
   font-size:5vmin;
   
 }
 
-.InputLogin div{
+.InputUserPass div{
   margin-bottom: 5vmin;
 }
 
-.InputLogin .login_info{
+.InputUserPass .input_info{
   color: black;
 }
 

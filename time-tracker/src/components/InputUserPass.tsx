@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 import useUserStore from "../useUserStore";
 import "../App.css";
+import { assert } from "console";
 
-export default function InputUserPass() {
+interface InputUserPassProps {authentication: "signup" | "login"}
+
+export default function InputUserPass({ authentication }: InputUserPassProps) {
   const { email, password, setEmail, setPassword } = useUserStore();
 
   useEffect(() => console.log({ email }), [email]);
 
   const handleButtonClick = async () => {
-    const response = fetch("http://localhost:5000/signup", {
+    const response = fetch("http://localhost:5000/" + authentication, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
@@ -17,7 +20,7 @@ export default function InputUserPass() {
       }),
     });
 
-    if ((await response).redirected){
+    if ((await response).redirected) {
       //Redirect to the redirect url
       window.location.href = (await response).url;
     } else {
@@ -28,12 +31,12 @@ export default function InputUserPass() {
   };
 
   return (
-    <div className="InputLogin">
+    <div className="InputUserPass">
       <form action="http://localhost:5000/login" method="POST">
         <div>
           <label htmlFor="email">Email: </label>
           <input
-            className="login_info"
+            className="input_info"
             id="email"
             name="email"
             type="text"
@@ -45,7 +48,7 @@ export default function InputUserPass() {
         <div>
           <label htmlFor="password">Password: </label>
           <input
-            className="login_info"
+            className="input_info"
             id="password"
             name="password"
             type="password"
@@ -57,7 +60,7 @@ export default function InputUserPass() {
           <input type="submit"></input>
         </div>
         <div>
-          <button onClick={handleButtonClick}>Signup</button>
+          <button onClick={handleButtonClick}>{authentication}</button>
         </div>
       </form>
     </div>
