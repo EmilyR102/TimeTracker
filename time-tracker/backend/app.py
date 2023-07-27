@@ -32,7 +32,7 @@ def login():
             user = auth.sign_in_with_email_and_password(email,password)
             session['user'] = email
             print("You're logging in!")
-            return ["User1", "User2", "User3"]
+            redirect("/home")
 
         except Exception:
             print('Wrong login')
@@ -41,17 +41,19 @@ def login():
 
 @app.route("/signup", methods=['POST'])
 def signup():
-    print("You want to signup :)")
-    return ["Signup Button", "Clicked"]
-    # email = request.form['email']
-    # password = request.form['password']
+    email = request.form['email']
+    password = request.form['password']
 
-    # try:
-    #     user = auth.create_user_with_email_and_password(email,password)
-    # except Exception:
-    #     print("Invalid email or password. Try again!")
-    #     #how do I redirect back to the home page??
+    try:
+        user = auth.create_user_with_email_and_password(email,password)
+        session["user"] = email
+        redirect("/home")
+    except Exception:
+        print("Invalid email or password. Try again!")
 
+def logout():
+    session.pop()
+    
 if __name__ == "__main__":
     app.run(debug=True) #since we're in dev mode
     

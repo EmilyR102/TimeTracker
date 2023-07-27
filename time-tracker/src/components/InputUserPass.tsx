@@ -1,9 +1,13 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import useUserStore from "../useUserStore";
-import "../App.css";
+import "../index.css";
 import { assert } from "console";
+import Button from "react-bootstrap/esm/Button";
 
-interface InputUserPassProps {authentication: "signup" | "login"}
+interface InputUserPassProps {
+  authentication: "signup" | "login";
+}
 
 export default function InputUserPass({ authentication }: InputUserPassProps) {
   const { email, password, setEmail, setPassword } = useUserStore();
@@ -30,13 +34,15 @@ export default function InputUserPass({ authentication }: InputUserPassProps) {
     }
   };
 
+  const otherAuth = authentication == "login" ? "signup" : "login";
+
   return (
-    <div className="InputUserPass">
+    <div className="input_user_pass">
       <form action="http://localhost:5000/login" method="POST">
         <div>
           <label htmlFor="email">Email: </label>
           <input
-            className="input_info"
+            className="field"
             id="email"
             name="email"
             type="text"
@@ -48,7 +54,7 @@ export default function InputUserPass({ authentication }: InputUserPassProps) {
         <div>
           <label htmlFor="password">Password: </label>
           <input
-            className="input_info"
+            className="field"
             id="password"
             name="password"
             type="password"
@@ -56,11 +62,11 @@ export default function InputUserPass({ authentication }: InputUserPassProps) {
             onChange={(e) => setPassword(e.target.value)}
           ></input>
         </div>
-        <div>
-          <input type="submit"></input>
+        <div className="submit_btn">
+          <input type="submit" onClick={handleButtonClick}></input>
         </div>
-        <div>
-          <button onClick={handleButtonClick}>{authentication}</button>
+        <div className="other_auth_btn">
+          <Button href={"/" + otherAuth}>{otherAuth}</Button>
         </div>
       </form>
     </div>

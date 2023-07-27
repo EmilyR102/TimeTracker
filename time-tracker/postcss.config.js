@@ -9,6 +9,6 @@ module.exports = {
     require("postcss-for"),
     require("postcss-conditionals"),
     require("postcss-each"),
-    require("postcss-while")
+
   ],
 };
