@@ -30,9 +30,8 @@ def login():
 
         try:
             user = auth.sign_in_with_email_and_password(email,password)
-            session['user'] = email
-            print("You're logging in!")
-            redirect("/home")
+            print(user)
+            return user 
 
         except Exception:
             print('Wrong login')

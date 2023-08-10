@@ -8,12 +8,12 @@ export default function Welcome() {
       <div className="app_title">
         <Title />
       </div>
-      <div className="login_btn">
+      <div className="btn">
         <Button href="/login" variant="light">
           Returning User
         </Button>
       </div>
-      <div className="signup_btn">
+      <div className="btn">
         <Button href="/signup" variant="light">
           New User
         </Button>

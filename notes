@@ -1,3 +1,25 @@
+# Getting Started
+
+## TO RUN SERVER:
+
+1. go inside the backend folder and do command:  
+   `conda activate env_flask_py38`  
+   `python app.py`
+
+2. Go inside just the time-tracker directory and run:  
+   `conda activate env_mdb`  
+   `npm start`
+
+## Changing CSS:
+
+1. Add CSS to styles.css file
+2. After you make your changes in that file, you need to run
+   postcss.config.js in order to convert the postcss to regular css and places it in index.css:  
+   `npx postcss styles.css -o index.css` 
+   `npx postcss src/styles.css -o src/index.css --config tailwind.config.js`
+
+# File Hierarchy
+
 index.html - you mount your App component here
 
 public contains index.html and static assets such as images
@@ -6,14 +28,12 @@ models - MongoDB stuff
 
 utils - typically common functions that do formatting, handle apis, data validation, user authentication, or have helper functions or modules that aren't specific to a particular component or feature such as string operations and data manipulation
 
-
-backend - includes Python Flask with MongoDB 
+backend - includes Python Flask with MongoDB
 
 public/index.html
 
 src/index.js
 
 src/App.js
-
 
 In order to initialize the file hierarchy run the create react app command
