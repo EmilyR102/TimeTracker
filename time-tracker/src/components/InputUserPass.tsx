@@ -68,7 +68,6 @@ export default function InputUserPass({ authentication }: InputUserPassProps) {
             value="Submit"
             onClick={handleButtonClick}
           />
-          {/* <input type="submit" onClick={handleButtonClick}></input> */}
         </div>
         <div>
           <Button href={"/" + otherAuth.toLowerCase()}>{otherAuth}</Button>
