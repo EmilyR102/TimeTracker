@@ -7,36 +7,24 @@ interface InputUserPassProps {
 }
 
 export default function InputUserPass({ authentication }: InputUserPassProps) {
-  const { email, password, setEmail, setPassword } = useUserStore();
+  const { email, password, setEmail, setPassword, setUserID } = useUserStore();
 
-  useEffect(() => console.log({ email }), [email]);
-  useEffect(() => console.log({ password }), [password]);
+  useEffect(() => console.log(password), [password]);
 
+  const url = "http://localhost:5000/" + authentication;
   const handleButtonClick = async () => {
-    const response = fetch("http://localhost:5000/" + authentication, {
+    const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({
-        email: email,
-        password: password,
-      }),
+      body: new URLSearchParams({ email: email, password: password }),
     });
-
-    if ((await response).redirected) {
-      //Redirect to the redirect url
-      window.location.href = (await response).url;
-    } else {
-      //return data from response
-      const data = (await response).json();
-      console.log(data);
-    }
   };
 
   const otherAuth = authentication == "login" ? "Signup" : "Login";
 
   return (
     <div className="input_user_pass">
-      <form action="http://localhost:5000/login" method="POST">
+      <form action={url} method="POST">
         <div>
           <label htmlFor="email">Email: </label>
           <input
