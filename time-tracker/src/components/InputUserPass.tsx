@@ -7,24 +7,26 @@ interface InputUserPassProps {
 }
 
 export default function InputUserPass({ authentication }: InputUserPassProps) {
-  const { email, password, setEmail, setPassword, setUserID } = useUserStore();
+  const { email, password, setEmail, setPassword } = useUserStore();
 
-  useEffect(() => console.log(password), [password]);
+  // useEffect(() => console.log(password), [password]);
 
   const url = "http://localhost:5000/" + authentication;
   const handleButtonClick = async () => {
-    const response = await fetch(url, {
+    let response = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      headers: { "Content-Type": "application/x-www-form-urlencoded"},
       body: new URLSearchParams({ email: email, password: password }),
     });
+
+    if (response.redirected) window.location.href = response.url;
+    else console.log(response);
   };
 
-  const otherAuth = authentication == "login" ? "Signup" : "Login";
-
   return (
+    // added onSubmit to prevent posting twice to server
     <div className="input_user_pass">
-      <form action={url} method="POST">
+      <form action={url} method="POST" onSubmit={(e) => e.preventDefault()}>
         <div>
           <label htmlFor="email">Email: </label>
           <input
@@ -56,9 +58,6 @@ export default function InputUserPass({ authentication }: InputUserPassProps) {
             value="Submit"
             onClick={handleButtonClick}
           />
-        </div>
-        <div>
-          <Button href={"/" + otherAuth.toLowerCase()}>{otherAuth}</Button>
         </div>
       </form>
     </div>

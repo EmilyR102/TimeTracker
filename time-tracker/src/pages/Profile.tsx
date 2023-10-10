@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import useUserStore from "../useUserStore";
+// import useUserStore from "../useUserStore";
+// import { error } from "console";
 
 export default function Profile() {
   interface userDataInterface {
@@ -7,15 +8,28 @@ export default function Profile() {
     emailVerified: boolean;
   }
 
-  const [user_data, setUserData] = useState<userDataInterface>({createdAt:"", emailVerified:false});
+  const [user_data, setUserData] = useState<userDataInterface>({
+    createdAt: "",
+    emailVerified: false,
+  });
 
   useEffect(() => {
-    fetch("http://localhost:3000/profile", {
+    fetch("http://localhost:5000/profile", {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
     })
-      .then((response) => response.json())
-      .then((data) => {setUserData(data); console.log(user_data)})
+      .then((response) => {
+        if (response.ok) {
+          console.log(response.json());
+          return response.json();
+        } else throw response;
+      })
+      .then((data) => {
+        setUserData(data);
+        console.log(data);
+      })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
