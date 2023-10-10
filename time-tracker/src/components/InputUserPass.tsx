@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import useUserStore from "../useUserStore";
 import Button from "react-bootstrap/esm/Button";
 
@@ -8,14 +7,14 @@ interface InputUserPassProps {
 
 export default function InputUserPass({ authentication }: InputUserPassProps) {
   const { email, password, setEmail, setPassword } = useUserStore();
-
-  // useEffect(() => console.log(password), [password]);
-
   const url = "http://localhost:5000/" + authentication;
+
   const handleButtonClick = async () => {
     let response = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded"},
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
       body: new URLSearchParams({ email: email, password: password }),
     });
 

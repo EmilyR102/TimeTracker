@@ -11,6 +11,7 @@
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "autoprefixer": "^10.4.14",
+    "axios": "^1.5.1",
     "bootstrap": "^5.3.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
@@ -36,6 +37,7 @@
   },
   "scripts": {
     "start": "craco start",
+    "start-api": "cd api && .venv/bin/flask run",
     "build": "craco build",
     "test": "craco test"
   },
@@ -64,5 +66,6 @@
     "postcss-conditionals": "^2.1.0",
     "postcss-each": "^1.1.0",
     "postcss-for": "^2.1.1"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

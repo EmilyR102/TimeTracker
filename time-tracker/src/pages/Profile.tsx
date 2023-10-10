@@ -17,7 +17,7 @@ export default function Profile() {
     fetch("http://localhost:5000/profile", {
       method: "GET",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/x-www-form-urlencoded",
       },
     })
       .then((response) => {
