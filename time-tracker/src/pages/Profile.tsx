@@ -1,45 +1,20 @@
-import React, { useEffect, useState } from "react";
-// import useUserStore from "../useUserStore";
-// import { error } from "console";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Profile() {
-  interface userDataInterface {
-    createdAt: string;
-    emailVerified: boolean;
-  }
-
-  const [user_data, setUserData] = useState<userDataInterface>({
-    createdAt: "",
-    emailVerified: false,
-  });
-
+  const [user_data, setUserData] = useState(null);
+  const url = "http://localhost:5000/profile";
   useEffect(() => {
-    fetch("http://localhost:5000/profile", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-    })
-      .then((response) => {
-        if (response.ok) {
-          console.log(response.json());
-          return response.json();
-        } else throw response;
-      })
-      .then((data) => {
-        setUserData(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
+    axios.get(url).then((response) => setUserData(response.data));
   }, []);
+
+  console.log("Inside Profile.tsx. Printing user_data:\n", user_data);
 
   return (
     <div>
-      <p>This is the Profile page!</p>
-      <p>User created at: {user_data.createdAt}</p>
-      <p>Is the user verified: {user_data.emailVerified.toString()}</p>
+      <h1>This is the Profile page!</h1>
+      <p>User data:</p>
+      <p>{user_data}</p>
     </div>
   );
 }

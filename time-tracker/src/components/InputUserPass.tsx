@@ -1,5 +1,6 @@
 import useUserStore from "../useUserStore";
 import Button from "react-bootstrap/esm/Button";
+import axios from "axios";
 
 interface InputUserPassProps {
   authentication: "signup" | "login";
@@ -10,16 +11,16 @@ export default function InputUserPass({ authentication }: InputUserPassProps) {
   const url = "http://localhost:5000/" + authentication;
 
   const handleButtonClick = async () => {
-    let response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({ email: email, password: password }),
-    });
-
-    if (response.redirected) window.location.href = response.url;
-    else console.log(response);
+    axios
+      .post(url, new URLSearchParams({ email: email, password: password }), {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      })
+      .then((response) => {
+        if (response.data.redirected) window.location.href = response.data.url;
+        else console.log(response.data);
+      });
   };
 
   return (

@@ -2,6 +2,7 @@
   "name": "time-tracker",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -37,7 +38,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "start-api": "cd api && .venv/bin/flask run",
+    "start-api": "cd api && .venv/bin/flask run --debug",
     "build": "craco build",
     "test": "craco test"
   },
@@ -66,6 +67,5 @@
     "postcss-conditionals": "^2.1.0",
     "postcss-each": "^1.1.0",
     "postcss-for": "^2.1.1"
-  },
-  "proxy": "http://localhost:5000"
+  }
 }
